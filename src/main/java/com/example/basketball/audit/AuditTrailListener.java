@@ -42,6 +42,7 @@ public class AuditTrailListener {
         sysLog.setDomain(object.getClass().getSimpleName());
         sysLog.setModifiedAt(LocalDateTime.now());
         try {
+            //There is no auth for initData...
             if(SecurityContextHolder.getContext().getAuthentication().isAuthenticated()) {
                 sysLog.setModifiedBy(SecurityContextHolder.getContext().getAuthentication().getName());
             }
