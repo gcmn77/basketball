@@ -1,0 +1,40 @@
+schema {
+    query: Query,
+    mutation: Mutation
+}
+
+type Player {
+    id: ID!
+    firstname: String!,
+    lastname: String!,
+    position: Int,
+    team: Team
+}
+
+type SysLog {
+    id: ID!
+    domain: String,
+    process: String,
+    modifiedBy: String,
+    modifiedAt: String,
+    body: String,
+}
+
+type Team {
+    id: ID!
+    name: String!,
+    conference: String,
+    rosterSize: Int
+}
+
+type Query {
+    getAllPlayers:[Player],
+    getAllPlayersPaged(page: Int, size: Int):[Player],
+    getAllTeams:[Team]
+    getAllSysLogs:[SysLog]
+}
+
+type Mutation {
+    savePlayer(firstname: String!, lastname: String!, position: Int, teamId: String): Player
+    deletePlayer(id: Int): Boolean
+}
