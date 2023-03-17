@@ -22,13 +22,16 @@ public class DataLoaderService {
         bucks.setName("Milwaukee Bucks");
         bucks.setConference("East");
         teamRepository.save(bucks);
-        List<String> playerNames = Arrays.asList("Khris Middleton", "Giannis Ante", "Jrue Holiday");
+        List<String> playerNames = Arrays.asList("Khris Middleton", "Giannis Ante", "Jrue Holiday", "Jamal Crawford"
+                , "Josh Carter", "Joe Ingles", "Bobby Portis", "Pat Connaugton", "Wes Mattews"
+                , "Greyson Allen", "Thanasis Ante", "Jae Crowder", "Meyers Leonard");
         for (String playerName : playerNames) {
             Player player = new Player();
             String[] names = playerName.split(" ");
             player.setFirstname(names[0]);
             player.setLastname(names[1]);
             player.setTeam(bucks);
+            player.setPosition(Player.Position.SMALL_FORWARD);
             playerRepository.save(player);
         }
     }

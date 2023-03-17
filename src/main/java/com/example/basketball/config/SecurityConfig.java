@@ -21,7 +21,7 @@ public class SecurityConfig {
 
         UserDetails userDetails2 = User.withDefaultPasswordEncoder()
                 .username("admin2")
-                .password("pw")
+                .password("pw2")
                 .roles("ADMIN", "USER")
                 .build();
 

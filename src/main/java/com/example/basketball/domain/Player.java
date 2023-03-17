@@ -22,17 +22,19 @@ public class Player {
     4 -> PF
     5 -> C
      */
-    private Short position;
+//    private Short position;
 
     @ManyToOne
     private Team team;
 
+    @Enumerated(EnumType.STRING)
+    private Position position;
+
     public enum Position {
         POINT_GUARD,
-        SHOOTING_GUARD
-        /*
-        @Enumerated(EnumType.STRING)
-    private Gender gender;
-         */
+        SHOOTING_GUARD,
+        SMALL_FORWARD,
+        POWER_FORWARD,
+        CENTER,
     }
 }

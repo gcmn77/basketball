@@ -4,6 +4,8 @@ import com.example.basketball.domain.Player;
 import com.example.basketball.domain.Team;
 import org.springframework.data.repository.CrudRepository;
 
-public interface TeamRepository extends CrudRepository<Team, Long> {
+import java.util.Optional;
 
+public interface TeamRepository extends CrudRepository<Team, Long> {
+Boolean existsTeamByName(String name);
 }

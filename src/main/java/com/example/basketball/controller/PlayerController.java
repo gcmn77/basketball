@@ -27,27 +27,20 @@ public class PlayerController {
     TeamRepository teamRepository;
 
     @QueryMapping
-    public Iterable<Player> getAllPlayers() {
-        return playerRepository.findAll();
-    }
-
-    @QueryMapping
-    public Page<Player> getAllPlayersPaged(@Argument int page, @Argument int size) {
+    public Page<Player> getAllPlayers(@Argument int page, @Argument int size) {
         PageRequest pageRequest = PageRequest.of(page, size);
         return playerRepository.findAll(pageRequest);
     }
 
     @MutationMapping
     @Transactional
-    public Player savePlayer(@Argument String firstname, @Argument String lastname, @Argument Short position, @Argument Long teamId) {
+    public Player savePlayer(@Argument String firstname, @Argument String lastname, @Argument Player.Position position, @Argument Long teamId) {
         Optional<Team> team = teamRepository.findById(teamId);
         if(!team.isPresent()) {
-//            return new ResponseEntity<String>("Team not found", HttpStatus.NOT_FOUND);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Team not found.");
         }
-        if(playerRepository.countByTeam(team.get()) >= 3) {
+        if(playerRepository.countByTeam(team.get()) >= 15) {
             throw new TeamFullException("Team's roster is full.");
-//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Team's roster is full.");
         }
         Player player = new Player();
         player.setFirstname(firstname);

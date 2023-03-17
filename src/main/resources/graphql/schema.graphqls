@@ -7,8 +7,16 @@ type Player {
     id: ID!
     firstname: String!,
     lastname: String!,
-    position: Int,
+    position: Position,
     team: Team
+}
+
+enum Position {
+    POINT_GUARD,
+    SHOOTING_GUARD,
+    SMALL_FORWARD,
+    POWER_FORWARD,
+    CENTER,
 }
 
 type SysLog {
@@ -28,13 +36,13 @@ type Team {
 }
 
 type Query {
-    getAllPlayers:[Player],
-    getAllPlayersPaged(page: Int, size: Int):[Player],
+    getAllPlayers(page: Int, size: Int):[Player],
     getAllTeams:[Team]
     getAllSysLogs:[SysLog]
 }
 
 type Mutation {
-    savePlayer(firstname: String!, lastname: String!, position: Int, teamId: String): Player
+    saveTeam(name: String!, conference: String): Team
+    savePlayer(firstname: String!, lastname: String!, position: Position, teamId: String): Player
     deletePlayer(id: Int): Boolean
 }
